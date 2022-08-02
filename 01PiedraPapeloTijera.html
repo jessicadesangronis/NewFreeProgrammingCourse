@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego piedra, papel o tijera</title>
+    <style>
+        div{
+            background: pink;
+            width: 100%;
+            position : relative;
+        }
+
+        #fondo {
+            width:100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        #logo {
+            width:200px;
+            position:absolute;
+            top: 20px;
+            right: 85%;
+            border-radius: 70px;
+            overflow: hidden;
+        }
+
+        #texto {
+            width: 500px;
+            position:absolute;
+            top: 20px;
+            left: 16%;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Juego de Piedra, Papel o Tijera</h1>
+    <div class="conte">
+        <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbfKqzRU_OZmZgC5LfVZAooP30yopPsmzIg&usqp=CAU" alt="Imagen de Logo">
+        <img id="fondo" src="https://noticiaspueblabla.com/wp-content/uploads/2018/10/noticias_puebla_piedra_papel_tijera_01.jpg" alt="Imagen de fondo">
+        <section id="texto">
+            <h2> En este juego competiras contra la computadora a ver quien gana </h2>
+            <button id="comenzar" onclick="miFuncion()">A jugar !</button>
+            <p id="contenido"></p>
+            <p id="contenido2"></p>
+            <h2 id="contenido3"></h2>
+
+
+
+        </section>
+    
+    </div>  
+    
+    <script>
+        function miFuncion() {
+            var jugador = prompt ("Eligue 1-Piedra, 2-Papel o 3-Tijera");
+            var mensaje = "V";
+            if (jugador == null || jugador == "") {
+                mensaje = "Debes elegir una opción";
+                document.getElementById('contenido').innerHTML= mensaje;
+                document.getElementById('contenido2').innerHTML= "";
+                document.getElementById('contenido3').innerHTML= "";
+                return;
+            } 
+
+            switch (jugador) {
+            case '1':
+                mensaje = "Elegiste Piedra";
+                break;
+            case '2':
+                mensaje = "Elegiste Papel";
+                break;
+            case '3':
+                mensaje = "Elegiste Tijera";
+                break;
+            default:
+                mensaje = "Debes elegir una opciòn vàlida";
+                document.getElementById('contenido').innerHTML= mensaje;
+                document.getElementById('contenido2').innerHTML= "";
+                document.getElementById('contenido3').innerHTML= "";
+                return;
+            }
+ 
+            document.getElementById('contenido').innerHTML= mensaje;
+
+            
+            var pc = Math.floor(Math.random() * 3)+1;
+            var mensaje2=pc;
+            switch (mensaje2) {
+            case 1:
+                mensaje2 = "Piedra";
+                break;
+            case 2:
+                mensaje2 = "Papel";
+                break;
+            case 3:
+                mensaje2 = "Tijera";
+                break;
+            }
+
+
+            if (jugador > 0 || jugador < 4 ) {
+
+                if ( jugador == pc) {
+                    
+                    document.getElementById('contenido2').innerHTML= "La PC eliguió: " + mensaje2;
+                    document.getElementById('contenido3').innerHTML= "Empate";
+
+                 } else if (jugador == 1 && pc == 3) {
+                    document.getElementById('contenido2').innerHTML= "La PC eliguió: " + mensaje2;
+                    document.getElementById('contenido3').innerHTML= "Ganaste";
+
+                 } else if (jugador - 1 == pc) {
+                    document.getElementById('contenido2').innerHTML= "La PC eliguió: " + mensaje2;
+                    document.getElementById('contenido3').innerHTML= "Ganaste";
+                } else {
+                    document.getElementById('contenido2').innerHTML= "La PC eliguió: " + mensaje2;
+                    document.getElementById('contenido3').innerHTML= "Perdiste";
+                }
+
+            }
+        }
+    </script>
+
+
+</body>
+</html>
